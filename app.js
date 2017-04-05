@@ -43,8 +43,11 @@ dialog.matches('greetings', [
 		var entity = args.entities[0].type;
 		session.send("greetings now");
 		session.send(entity);
-		session.send(session);
-		session.send(args);
+		if (session.message.address.channelId === 'slack') {
+			console.log('you are using slack');
+		}
+		console.log(session.message.address.channelId);
+		// console.log(args);
     },
 ]);
 
