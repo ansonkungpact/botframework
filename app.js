@@ -32,25 +32,22 @@ server.post('/api/messages', connector.listen());
 
 bot.dialog('/', dialog);
 bot.use(builder.Middleware.sendTyping());
-// bot.dialog('/', function (session, args, next) {
-//     session.send("Hello World");
-//     var intent = args;
-//     session.send(intent);
-// });
 
+// Intent: greetings
 dialog.matches('greetings', [
 	function (session, args, next) {
 		var entity = args.entities[0].type;
 		session.send("greetings now");
 		session.send(entity);
+
+		// show the message only in slack
 		if (session.message.address.channelId === 'slack') {
 			session.send('you are using slack');
 		}
-		session.send(session.message.address.channelId);
-		// console.log(args);
     },
 ]);
 
+// Intent: None
 dialog.matches('None', [
 	function (session, args, next) {
 		session.send("I don't know what is the meaning");
