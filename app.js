@@ -40,9 +40,11 @@ bot.use(builder.Middleware.sendTyping());
 
 dialog.matches('greetings', [
 	function (session, args, next) {
-		session.send("greetings now");
 		var entity = args.entities[0].type;
+		session.send("greetings now");
 		session.send(entity);
+		session.send(session);
+		session.send(args);
     },
 ]);
 
