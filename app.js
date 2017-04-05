@@ -43,6 +43,8 @@ dialog.matches('greetings', [
 		// show the message only in slack
 		if (session.message.address.channelId === 'slack') {
 			session.send('you are using slack');
+			session.send(session.message.address.from.id);
+			session.send(session.message.address.recipient.id);
 		}
     },
 ]);
