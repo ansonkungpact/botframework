@@ -40,7 +40,6 @@ bot.use(builder.Middleware.sendTyping());
 
 dialog.matches('greetings', [
 	function (session, args, next) {
-		session.sendTyping();
 		session.send("greetings now");
 		var entity = args.entities[0].type;
 		session.send(entity);
@@ -49,7 +48,6 @@ dialog.matches('greetings', [
 
 dialog.matches('None', [
 	function (session, args, next) {
-		session.sendTyping();
 		session.send("I don't know what is the meaning");
     },
 ]);
