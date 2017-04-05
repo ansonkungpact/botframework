@@ -31,6 +31,7 @@ server.post('/api/messages', connector.listen());
 //=========================================================
 
 bot.dialog('/', dialog);
+bot.use(builder.Middleware.sendTyping());
 // bot.dialog('/', function (session, args, next) {
 //     session.send("Hello World");
 //     var intent = args;
