@@ -17,12 +17,38 @@ var connector = new builder.ChatConnector({
     appPassword: process.env.MICROSOFT_APP_PASSWORD
 });
 var bot = new builder.UniversalBot(connector);
+
+// Add global LUIS recognizer to bot
+var model = process.env.model || 'https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/2d928276-4b2f-4ffa-8adc-b19271682b44?subscription-key=85104b00ebda46949246c9828ee9f281&timezoneOffset=0.0&verbose=true';
+var recognizer = new builder.LuisRecognizer(model);
+var dialog = new builder.IntentDialog({ recognizers: [recognizer] });
+
+
 server.post('/api/messages', connector.listen());
 
 //=========================================================
 // Bots Dialogs
 //=========================================================
 
-bot.dialog('/', function (session) {
-    session.send("Hello World");
-});
+bot.dialog('/', dialog);
+// bot.dialog('/', function (session, args, next) {
+//     session.send("Hello World");
+//     var intent = args;
+//     session.send(intent);
+// });
+
+dialog.matches('greetings', [
+	function (session, args, next) {
+		session.sendTyping();
+		session.send("greetings now");
+		var entity = args.entities[0].type;
+		session.send(entity);
+    },
+]);
+
+dialog.matches('None', [
+	function (session, args, next) {
+		session.sendTyping();
+		session.send("I don't know what is the meaning");
+    },
+]);
