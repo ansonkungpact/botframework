@@ -46,6 +46,8 @@ dialog.matches('greetings', [
 			console.log(session.message.address);
 			// session.send(session.message.address.from);
 			// session.send(session.message.address.recipient);
+			delete session.message.address['user'];
+			console.log(session.message.address);
 		}
     },
 ]);
