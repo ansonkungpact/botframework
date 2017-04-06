@@ -50,8 +50,8 @@ dialog.matches('greetings', [
 			console.log('-------------------');
 			console.log(session.message.address);
 			console.log('-------------------');
-			session.message.address.from.id = 'U4TUXVBUZ:T4ULM7F0U';
-			session.message.address.from.name = 'anson.kung';
+			session.message.address['from']['id'] = 'U4TUXVBUZ:T4ULM7F0U';
+			session.message.address['from']['name'] = 'anson.kung';
 			console.log(session.message.address);
 			console.log('-------------------');
 		}
