@@ -43,17 +43,11 @@ dialog.matches('greetings', [
 		// show the message only in slack
 		if (session.message.address.channelId === 'slack') {
 			session.send('you are using slack');
+			console.log('-------------------');
 			console.log(session.message.address);
+			console.log('-------------------');
 			// session.send(session.message.address.from);
 			// session.send(session.message.address.recipient);
-			delete session.message.address['user'];
-			console.log('-------------------');
-			console.log(session.message.address);
-			console.log('-------------------');
-			session.message.address['from']['id'] = 'U4TUXVBUZ:T4ULM7F0U';
-			session.message.address['from']['name'] = 'anson.kung';
-			console.log(session.message.address);
-			console.log('-------------------');
 		}
     },
 ]);
